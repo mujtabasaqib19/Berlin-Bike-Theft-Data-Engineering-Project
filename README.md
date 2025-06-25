@@ -1,4 +1,3 @@
-````markdown
 # 🚲 Berlin Bike Theft Analytics
 
 A modern data pipeline to analyze and visualize bicycle theft incidents in Berlin using **dbt**, **Apache Airflow**, **Snowflake**, and **Power BI**.

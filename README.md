@@ -31,7 +31,7 @@ dbt-dag/
 │           └── README.md
 ├── .airflowignore
 
-
+```bash
 
 ## 🔄 ETL Architecture
 

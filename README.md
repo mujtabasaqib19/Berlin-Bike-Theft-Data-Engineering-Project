@@ -1,18 +1,19 @@
-# 🚲 Berlin Bike Theft Analytics
+# 🚲 Berlin Bike Theft Analytics (dbt + Airflow + Snowflake)
 
-A complete modern data pipeline to analyze and visualize Berlin bike thefts using **dbt**, **Apache Airflow**, **Snowflake**, and **Power BI**.
+A modern data pipeline to model, orchestrate, and visualize **Berlin bicycle thefts** using dbt, Airflow, Snowflake, and Power BI.
 
 ---
 
-## 🗂 Project Structure
+## 📁 Project Structure
 
+```bash
 dbt-dag/
-├── .astro/                         # Astro config (optional)
+├── .astro/                         # Astronomer config (optional)
 ├── dags/
 │   ├── __pycache__/
-│   ├── biketheft.py               # Airflow DAG that runs dbt
+│   ├── biketheft.py               # Airflow DAG using Cosmos
 │   └── dbt/
-│       └── berlinbiketheft/       # dbt project lives here
+│       └── berlinbiketheft/       # Main dbt project
 │           ├── analyses/
 │           ├── logs/
 │           ├── macros/
@@ -29,6 +30,7 @@ dbt-dag/
 │           ├── packages.yml
 │           └── README.md
 ├── .airflowignore
+
 
 
 ## 🔄 ETL Architecture

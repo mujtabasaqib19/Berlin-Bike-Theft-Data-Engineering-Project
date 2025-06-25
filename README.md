@@ -1,19 +1,27 @@
-# 🚲 Berlin Bike Theft Analytics (dbt + Airflow + Snowflake)
+````markdown
+# 🚲 Berlin Bike Theft Analytics
 
-A modern data pipeline to model, orchestrate, and visualize **Berlin bicycle thefts** using dbt, Airflow, Snowflake, and Power BI.
+A modern data pipeline to analyze and visualize bicycle theft incidents in Berlin using **dbt**, **Apache Airflow**, **Snowflake**, and **Power BI**.
+
+This project transforms raw theft data into structured dimensional models, orchestrates the transformation with Airflow (using Cosmos), and provides actionable insights via a BI dashboard.
 
 ---
+
+
+## 🖼️ Dashboard Screenshot
+
+> ![Power BI Screenshot](./screenshots/powerbi_dashboard.png)
 
 ## 📁 Project Structure
 
 ```bash
 dbt-dag/
-├── .astro/                         # Astronomer config (optional)
+├── .astro/                         # Astronomer configs (if used)
 ├── dags/
 │   ├── __pycache__/
-│   ├── biketheft.py               # Airflow DAG using Cosmos
+│   ├── biketheft.py               # Airflow DAG (uses Cosmos dbt integration)
 │   └── dbt/
-│       └── berlinbiketheft/       # Main dbt project
+│       └── berlinbiketheft/       # dbt project root
 │           ├── analyses/
 │           ├── logs/
 │           ├── macros/
@@ -30,79 +38,124 @@ dbt-dag/
 │           ├── packages.yml
 │           └── README.md
 ├── .airflowignore
-
-```bash
-
-## 🔄 ETL Architecture
-
-java
-Copy
-Edit
-        Raw CSV Files (Bike Thefts)
-                   │
-                   ▼
-      dbt staging models (staging/)
-                   │
-                   ▼
-   dbt marts models (dimension/, fact/, aggregates/)
-                   │
-                   ▼
-       Airflow DAG (biketheft.py)
-                   │
-                   ▼
-     Snowflake Warehouse Tables
-                   │
-                   ▼
-         Power BI Dashboard
-yaml
-Copy
-Edit
+````
 
 ---
 
-## 📈 Power BI Insights
+## 🔄 ETL Pipeline Overview
 
-![Dashboard Screenshot](./screenshots/powerbi_dashboard.png)
-
-Key Metrics:
-- **Total Bike Thefts**: 29.1K  
-- **Total Damage Amount**: €37.21M  
-- **Most Targeted Time**: Afternoon & Evening  
-- **Most Common Day Type**: Weekdays  
-- **Most Stolen Types**: Herrenrad, Damenrad  
+```text
+        Raw CSV Files (Bike Theft)
+               │
+               ▼
+     Staging Layer (dbt models)
+               │
+               ▼
+  Dimension & Fact Tables (marts/)
+               │
+               ▼
+ Airflow DAG (biketheft.py with Cosmos)
+               │
+               ▼
+       Snowflake Warehouse
+               │
+               ▼
+      Power BI Dashboard (Reports)
+```
 
 ---
 
 ## 🧱 dbt Model Layers
 
-### 📄 `staging/`
-- `stg_bike_thefts.sql` – Raw cleaning and type casting
-
-### 🧩 `marts/dimension/`
-- `dim_bike_types.sql`
-- `dim_dates.sql`, `dim_day_type.sql`, `dim_time_of_day.sql`
-- `dim_locations.sql`, `dim_offenses.sql`, ...
-
-### 📊 `marts/fact/`
-- `fact_bike_thefts.sql` – Combines all foreign keys + measures
+* `staging/`: Clean & standardize raw data.
+* `dimension/`: e.g., `dim_day_type`, `dim_bike_types`, `dim_datetime`
+* `fact/`: `fact_bike_thefts`
+* `aggregates/`: `thefts_by_day_type`, `thefts_by_time_of_day`
 
 ---
 
-## ⚙️ Technologies Used
+## 📊 Power BI Dashboard Metrics
 
-| Tool         | Role                                  |
-|--------------|---------------------------------------|
-| dbt          | Data modeling & transformation        |
-| Airflow      | DAG orchestration (via Cosmos)        |
-| Snowflake    | Cloud data warehouse                  |
-| Power BI     | Visualization & dashboarding          |
-| Cosmos       | dbt-Aiflow integration layer          |
+| Metric                       
+| ----------------------------- |
+| **Total Thefts**              |
+| **Total Damage Amount (€)**   |
+| **Unique Bike Types**         |
+| **Attempted Thefts**          |
+| **Unique LOR Codes**          |
+| **Most Common Offense**       |
+| **Top Theft Time**            |
+| **Top Bike Type**             | 
+| **Weekday vs Weekend Thefts** | 
 
 ---
 
-## 🚀 Getting Started
+## 🖼️ Dashboard Screenshot
 
-1. **Clone Repo**
+> ![Power BI Screenshot](./screenshots/powerbi_dashboard.png)
+
+---
+
+## ⚙️ Tech Stack
+
+| Tool           | Purpose                          |
+| -------------- | -------------------------------- |
+| dbt            | Data modeling & transformation   |
+| Apache Airflow | Pipeline orchestration           |
+| Cosmos         | Seamless dbt-Airflow integration |
+| Snowflake      | Cloud data warehouse             |
+| Power BI       | Dashboard & visualization        |
+
+---
+
+## 🚀 How to Run the Project
+
+1. **Clone the Repo**
+
    ```bash
-   git clone https://github.com/yourusername/berlin-bike-theft-analytics.git
+   git clone https://github.com/your-username/berlin-bike-theft.git
    cd dbt-dag
+   ```
+
+2. **Start Airflow (with Astro or Docker)**
+
+   ```bash
+   astro dev start
+   ```
+
+3. **Trigger the DAG**
+
+   * Visit `http://localhost:8080`
+   * Trigger the DAG: `dbt_bike_theft_dag`
+
+4. **Check Snowflake**
+
+   * Query `berlinbiketheft.marts.*` models for fact/dim data
+
+5. **Power BI Setup**
+
+   * Connect to Snowflake
+   * Load `fact_bike_thefts` and dimensions
+   * Build visualizations (filters, slicers, KPIs)
+
+---
+
+## 📄 License
+
+This project is licensed under the MIT License.
+
+---
+
+## 🙌 Author
+
+Shehryar Saqib
+*Data Engineering & Analytics Enthusiast*
+
+[LinkedIn](https://linkedin.com/in/mujtaba-saqib) • [GitHub](https://github.com/mujtabasaqib19)
+
+```
+
+---
+
+Let me know if you’d like this saved as a `README.md` file or if you want to customize the author links or repository URL.
+```

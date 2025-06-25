@@ -59,7 +59,7 @@ dbt-dag/
                ▼
       Power BI Dashboard (Reports)
 ```
-
+> ![DAG](dbt_bike_theft_dag-graph.png)
 ---
 
 ## 🧱 dbt Model Layers

@@ -27,12 +27,6 @@ dbt-dag/
 ├── .airflowignore
 ├── .astro # Astro configs if using Astronomer
 
-yaml
-Copy
-Edit
-
----
-
 ## 🔄 ETL Architecture
 
 java

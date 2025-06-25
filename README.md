@@ -7,7 +7,7 @@ This project transforms raw theft data into structured dimensional models, orche
 ---
 ## 🖼️ Dashboard Screenshot
 
-> ![Power BI Screenshot](./screenshots/powerbi_dashboard.png)
+> ![Power BI Screenshot](dashboard.png)
 
 ## 📁 Project Structure
 

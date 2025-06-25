@@ -6,8 +6,6 @@ A modern data pipeline to analyze and visualize bicycle theft incidents in Berli
 This project transforms raw theft data into structured dimensional models, orchestrates the transformation with Airflow (using Cosmos), and provides actionable insights via a BI dashboard.
 
 ---
-
-
 ## 🖼️ Dashboard Screenshot
 
 > ![Power BI Screenshot](./screenshots/powerbi_dashboard.png)
@@ -87,12 +85,6 @@ dbt-dag/
 | **Top Theft Time**            |
 | **Top Bike Type**             | 
 | **Weekday vs Weekend Thefts** | 
-
----
-
-## 🖼️ Dashboard Screenshot
-
-> ![Power BI Screenshot](./screenshots/powerbi_dashboard.png)
 
 ---
 

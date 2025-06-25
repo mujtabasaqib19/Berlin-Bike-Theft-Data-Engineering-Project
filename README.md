@@ -139,7 +139,7 @@ This project is licensed under the MIT License.
 
 ## 🙌 Author
 
-Shehryar Saqib
+Mujtaba Saqib
 *Data Engineering & Analytics Enthusiast*
 
 [LinkedIn](https://linkedin.com/in/mujtaba-saqib) • [GitHub](https://github.com/mujtabasaqib19)

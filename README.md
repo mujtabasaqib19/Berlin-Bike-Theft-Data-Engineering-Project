@@ -7,25 +7,29 @@ A complete modern data pipeline to analyze and visualize Berlin bike thefts usin
 ## 🗂 Project Structure
 
 dbt-dag/
+├── .astro/                         # Astro config (optional)
 ├── dags/
-│ └── dbt/
-│ └── berlinbiketheft/ # dbt project lives here
-│ ├── models/
-│ │ ├── marts/
-│ │ │ ├── dimension/
-│ │ │ ├── fact/
-│ │ │ └── staging/
-│ │ └── ...
-│ ├── seeds/
-│ ├── snapshots/
-│ ├── target/
-│ ├── tests/
-│ ├── dbt_project.yml
-│ ├── packages.yml
-│ └── README.md
-├── biketheft.py # Airflow DAG
+│   ├── __pycache__/
+│   ├── biketheft.py               # Airflow DAG that runs dbt
+│   └── dbt/
+│       └── berlinbiketheft/       # dbt project lives here
+│           ├── analyses/
+│           ├── logs/
+│           ├── macros/
+│           ├── models/
+│           │   ├── marts/
+│           │   │   ├── dimension/
+│           │   │   ├── fact/
+│           │   │   └── staging/
+│           ├── seeds/
+│           ├── snapshots/
+│           ├── target/
+│           ├── tests/
+│           ├── dbt_project.yml
+│           ├── packages.yml
+│           └── README.md
 ├── .airflowignore
-├── .astro # Astro configs if using Astronomer
+
 
 ## 🔄 ETL Architecture
 

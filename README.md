@@ -1,8 +1,6 @@
-````markdown
 # 🚲 Berlin Bike Theft Analytics
-
 A modern **data analytics pipeline** using **dbt**, **Snowflake**, and **Power BI** to analyze Berlin’s bike theft incidents with interactive insights.
-
+````markdown
 ---
 
 ## 📁 Project Structure

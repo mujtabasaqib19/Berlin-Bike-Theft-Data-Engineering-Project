@@ -1,0 +1,6 @@
+sources:
+  - name: BIKES_THEFT
+    database: BIKES_THEFT
+    schema: THEFTS
+    tables:
+      - name: THEFTSDATA

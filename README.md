@@ -1,5 +1,12 @@
 # 🚲 Berlin Bike Theft Analytics
 A modern **data analytics pipeline** using **dbt**, **Snowflake**, and **Power BI** to analyze Berlin’s bike theft incidents with interactive insights.
+
+## 📊 Power BI Dashboard
+
+> Final dashboard showcasing KPIs and insights:
+
+![Power BI Dashboard](./dashboard.png)
+
 ````markdown
 ---
 
@@ -47,23 +54,6 @@ bikertheft/
    * `mart_bike_theft_summary`: Full enriched dataset for BI.
    * `mart_bike_theft_daily_summary`: Aggregates by date for trend analysis.
    * `mart_bike_theft_by_category`: Aggregates by severity, type, and damage.
-
----
-
-## 🔄 dbt DAG
-
-> Data flow from staging → intermediate → marts:
-
-![dbt DAG](dbt_snowflake_pipeline-graph.png)
-
----
-
-## 📊 Power BI Dashboard
-
-> Final dashboard showcasing KPIs and insights:
-
-![Power BI Dashboard](./dashboard.png)
-
 ---
 
 ## 🚀 Running the Project

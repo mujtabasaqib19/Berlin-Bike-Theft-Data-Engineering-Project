@@ -54,7 +54,7 @@ bikertheft/
 
 > Data flow from staging → intermediate → marts:
 
-![dbt DAG](./dbt_snowflake_pipeline-graph.png)
+![dbt DAG](dbt_snowflake_pipeline-graph.png)
 
 ---
 

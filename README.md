@@ -76,26 +76,36 @@ dbt run
 * Connect Snowflake to Power BI.
 * Use `mart_bike_theft_summary` for visuals.
 
----
-
-## 🧠 Insights Enabled
-
-✅ Theft patterns across weekdays vs weekends
-✅ Theft severity and time-of-day patterns
-✅ Aggregated metrics for damage and reporting
-✅ BI filters for interactive exploration
+Here’s the exact same text rewritten cleanly for your **GitHub README**:
 
 ---
 
-## 📌 KPIs in Dashboard
+📌 **Dashboard Highlights**
 
-* **Total Locations Reported**
-* **Average Damage (€)**
-* **Distinct Bike Types**
-* **Extreme Damage Cases**
-* **Total Reported Thefts**
+🧮 **KPI Cards**
 
----
+* Total Locations
+* Average Damage (€)
+* Distinct Bike Types
+* Extreme Damage Cases
+* Total Reported Thefts
+
+📊 **Charts**
+
+* **Donut**: Theft distribution by weekday/weekend
+* **Donut**: Theft severity (serious vs simple)
+* **Donut**: Start-End Time Period Comparison
+* **Bar**: Damage by time of day
+* **Bar**: Damage by bike type
+* **Bar**: Theft counts by damage tier
+
+🧠 **Insights Enabled**
+
+* Analyze weekday vs weekend theft patterns
+* Identify high-damage periods
+* Break down bike type vulnerability
+* Observe theft timing behavior (cross-period vs same-period)
+* Assess reporting volume and severity over time
 
 ## 📜 License
 
@@ -105,5 +115,5 @@ MIT License – for educational and analytical purposes.
 
 ## 🙌 Contributors
 
-Created by \[Your Name] 🚀
+Created by Mujtaba Saqib 🚀
 

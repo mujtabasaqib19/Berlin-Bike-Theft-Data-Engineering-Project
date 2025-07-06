@@ -1,152 +1,121 @@
+````markdown
 # 🚲 Berlin Bike Theft Analytics
 
-A modern data pipeline to analyze and visualize bicycle theft incidents in Berlin using **dbt**, **Apache Airflow**, **Snowflake**, and **Power BI**.
-
-This project transforms raw theft data into structured dimensional models, orchestrates the transformation with Airflow (using Cosmos), and provides actionable insights via a BI dashboard.
+A modern **data analytics pipeline** using **dbt**, **Snowflake**, and **Power BI** to analyze Berlin’s bike theft incidents with interactive insights.
 
 ---
-## 🖼️ Dashboard
-
-> ![Power BI Screenshot](dashboard.png)
 
 ## 📁 Project Structure
 
-```bash
-dbt-dag/
-├── .astro/                         # Astronomer configs (if used)
-├── dags/
-│   ├── __pycache__/
-│   ├── biketheft.py               # Airflow DAG (uses Cosmos dbt integration)
-│   └── dbt/
-│       └── berlinbiketheft/       # dbt project root
-│           ├── analyses/
-│           ├── logs/
-│           ├── macros/
-│           ├── models/
-│           │   ├── marts/
-│           │   │   ├── dimension/
-│           │   │   ├── fact/
-│           │   │   └── staging/
-│           ├── seeds/
-│           ├── snapshots/
-│           ├── target/
-│           ├── tests/
-│           ├── dbt_project.yml
-│           ├── packages.yml
-│           └── README.md
-├── .airflowignore
+```plaintext
+bikertheft/
+├── models/
+│   ├── staging/
+│   │   ├── sources.yml
+│   │   └── stg_bike_thefts.sql
+│   ├── intermediate/
+│   │   ├── int_bike_theft_day_category.sql
+│   │   ├── int_bike_theft_time_of_day.sql
+│   │   ├── int_bike_theft_damage_tier.sql
+│   │   ├── int_bike_theft_severity_category.sql
+│   │   └── int_bike_theft_enriched.sql
+│   └── marts/
+│       ├── mart_bike_theft_summary.sql
+│       ├── mart_bike_theft_daily_summary.sql
+│       └── mart_bike_theft_by_category.sql
 ````
 
 ---
 
-## 🔄 ETL Pipeline Overview
+## 🛠️ Tech Stack
 
-```text
-        Raw CSV Files (Bike Theft)
-               │
-               ▼
-     Staging Layer (dbt models)
-               │
-               ▼
-  Dimension & Fact Tables (marts/)
-               │
-               ▼
- Airflow DAG (biketheft.py with Cosmos)
-               │
-               ▼
-       Snowflake Warehouse
-               │
-               ▼
-      Power BI Dashboard (Reports)
-```
-> ![DAG](dbt_bike_theft_dag-graph.png)
----
-
-## 🧱 dbt Model Layers
-
-* `staging/`: Clean & standardize raw data.
-* `dimension/`: e.g., `dim_day_type`, `dim_bike_types`, `dim_datetime`
-* `fact/`: `fact_bike_thefts`
-* `aggregates/`: `thefts_by_day_type`, `thefts_by_time_of_day`
+* **Snowflake** → Cloud data warehouse for scalable storage and compute.
+* **dbt** → Transformation layer for staging, enrichment, and marts.
+* **Power BI** → Business Intelligence visualization.
 
 ---
 
-## 📊 Power BI Dashboard Metrics
+## 📊 Data Flow
 
-| Metric                       
-| ----------------------------- |
-| **Total Thefts**              |
-| **Total Damage Amount (€)**   |
-| **Unique Bike Types**         |
-| **Attempted Thefts**          |
-| **Unique LOR Codes**          |
-| **Most Common Offense**       |
-| **Top Theft Time**            |
-| **Top Bike Type**             | 
-| **Weekday vs Weekend Thefts** | 
+1. **Staging**: Cleans and standardizes raw bike theft data (`stg_bike_thefts`).
+2. **Intermediate**: Adds derived fields like:
 
----
+   * Day Category (Weekday/Weekend)
+   * Time of Day (Morning/Afternoon/etc.)
+   * Damage Tier (Low/Medium/High)
+   * Theft Severity
+3. **Marts**:
 
-## ⚙️ Tech Stack
-
-| Tool           | Purpose                          |
-| -------------- | -------------------------------- |
-| dbt            | Data modeling & transformation   |
-| Apache Airflow | Pipeline orchestration           |
-| Cosmos         | Seamless dbt-Airflow integration |
-| Snowflake      | Cloud data warehouse             |
-| Power BI       | Dashboard & visualization        |
+   * `mart_bike_theft_summary`: Full enriched dataset for BI.
+   * `mart_bike_theft_daily_summary`: Aggregates by date for trend analysis.
+   * `mart_bike_theft_by_category`: Aggregates by severity, type, and damage.
 
 ---
 
-## 🚀 How to Run the Project
+## 🔄 dbt DAG
 
-1. **Clone the Repo**
+> Data flow from staging → intermediate → marts:
 
-   ```bash
-   git clone https://github.com//mujtabasaqib19/Berlin-Bike-Theft-Data-Engineering-Project.git
-   cd dbt-dag
-   ```
-
-2. **Start Airflow (with Astro or Docker)**
-
-   ```bash
-   astro dev start
-   ```
-
-3. **Trigger the DAG**
-
-   * Visit `http://localhost:8080`
-   * Trigger the DAG: `dbt_bike_theft_dag`
-
-4. **Check Snowflake**
-
-   * Query `berlinbiketheft.marts.*` models for fact/dim data
-
-5. **Power BI Setup**
-
-   * Connect to Snowflake
-   * Load `fact_bike_thefts` and dimensions
-   * Build visualizations (filters, slicers, KPIs)
+![dbt DAG](./dbt_snowflake_pipeline-graph.png)
 
 ---
 
-## 📄 License
+## 📊 Power BI Dashboard
 
-This project is licensed under the MIT License.
+> Final dashboard showcasing KPIs and insights:
+
+![Power BI Dashboard](./dashboard.png)
 
 ---
 
-## 🙌 Author
+## 🚀 Running the Project
 
-Mujtaba Saqib
-*Data Engineering & Analytics Enthusiast*
+### 1️⃣ Setup Snowflake
 
-[LinkedIn](https://linkedin.com/in/mujtaba-saqib) • [GitHub](https://github.com/mujtabasaqib19)
+* Load cleaned bike theft dataset into `THEFTS.THEFTSDATA`.
 
+### 2️⃣ Configure dbt
+
+* Set Snowflake credentials in `profiles.yml`
+* Run transformations:
+
+```bash
+dbt run
 ```
 
+### 3️⃣ Connect to Power BI
+
+* Connect Snowflake to Power BI.
+* Use `mart_bike_theft_summary` for visuals.
+
 ---
 
-Let me know if you’d like this saved as a `README.md` file or if you want to customize the author links or repository URL.
-```
+## 🧠 Insights Enabled
+
+✅ Theft patterns across weekdays vs weekends
+✅ Theft severity and time-of-day patterns
+✅ Aggregated metrics for damage and reporting
+✅ BI filters for interactive exploration
+
+---
+
+## 📌 KPIs in Dashboard
+
+* **Total Locations Reported**
+* **Average Damage (€)**
+* **Distinct Bike Types**
+* **Extreme Damage Cases**
+* **Total Reported Thefts**
+
+---
+
+## 📜 License
+
+MIT License – for educational and analytical purposes.
+
+---
+
+## 🙌 Contributors
+
+Created by \[Your Name] 🚀
+
